@@ -1,7 +1,8 @@
 import { View, Text, StyleSheet } from "react-native";
 import LabeledInput from "../LabeledInput";
 import { OnboardingData } from "../types";
-import { sharedStyles, colors } from "../onboarding.styles";
+import { sharedStyles } from "../onboarding.styles";
+import { colors } from "@/constants/colors";
 
 interface BasicInfoStepProps {
   data: OnboardingData;

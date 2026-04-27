@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { colors } from "./onboarding.styles";
+import { colors } from "@/constants/colors";
 
 interface SubmitButtonProps {
   label: string;
@@ -18,7 +18,7 @@ export default function SubmitButton({ label, onPress }: SubmitButtonProps) {
       <Ionicons
         name="arrow-forward"
         size={18}
-        color="#fff"
+        color={colors.white}
         style={styles.icon}
       />
     </TouchableOpacity>

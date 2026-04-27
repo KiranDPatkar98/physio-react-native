@@ -17,7 +17,7 @@ import BasicInfoStep from "./steps/BasicInfoStep";
 import WorkLifestyleStep from "./steps/WorkLifestyleStep";
 import PainAreasStep from "./steps/PainAreasStep";
 import FrequencyStep from "./steps/FrequencyStep";
-import { colors } from "./onboarding.styles";
+import { colors } from "@/constants/colors";
 import { OnboardingData, INITIAL_DATA } from "./types";
 
 const STEP_LABELS = ["Basic Info", "Work Lifestyle", "Pain Areas", "Frequency & Time"];

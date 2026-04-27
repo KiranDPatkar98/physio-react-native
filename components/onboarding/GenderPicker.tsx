@@ -1,7 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { colors, sharedStyles } from "./onboarding.styles";
+import { colors } from "@/constants/colors";
+import { sharedStyles } from "./onboarding.styles";
 
 const GENDERS = ["Male", "Female", "Non-binary", "Prefer not to say"];
 
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.divider,
   },
   itemActive: {
-    backgroundColor: "#F0F9FF",
+    backgroundColor: colors.itemActiveBg,
   },
   itemText: {
     fontSize: 15,

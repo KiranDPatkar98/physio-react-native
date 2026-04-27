@@ -1,5 +1,5 @@
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
-import { colors } from "./onboarding.styles";
+import { colors } from "@/constants/colors";
 
 interface OptionChipProps {
   label: string;
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     color: colors.labelText,
   },
   labelSelected: {
-    color: "#fff",
+    color: colors.white,
     fontWeight: "600",
   },
 });

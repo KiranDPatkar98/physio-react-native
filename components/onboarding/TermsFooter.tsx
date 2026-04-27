@@ -1,5 +1,5 @@
 import { Text, StyleSheet } from "react-native";
-import { colors } from "./onboarding.styles";
+import { colors } from "@/constants/colors";
 
 export default function TermsFooter() {
   return (

@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
+import { colors } from "@/constants/colors";
 
 const AI = () => {
   return (
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
   },
   title: {
     fontSize: 24,
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
-    color: '#666',
+    color: colors.textSecondary,
   },
 });
 

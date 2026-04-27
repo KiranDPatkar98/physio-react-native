@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import { colors } from "./onboarding.styles";
+import { colors } from "@/constants/colors";
 
 interface ProgressBarProps {
   currentStep: number;
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: "#E2E8F0",
+    backgroundColor: colors.border,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   dotDone: {
-    backgroundColor: "#0EA5E9",
+    backgroundColor: colors.primary,
     opacity: 0.6,
   },
   dotLabel: {
@@ -87,17 +87,17 @@ const styles = StyleSheet.create({
     color: colors.iconText,
   },
   dotLabelActive: {
-    color: "#fff",
+    color: colors.white,
   },
   checkmark: {
     fontSize: 13,
-    color: "#fff",
+    color: colors.white,
     fontWeight: "700",
   },
   line: {
     width: 36,
     height: 2,
-    backgroundColor: "#E2E8F0",
+    backgroundColor: colors.border,
   },
   lineDone: {
     backgroundColor: colors.primary,

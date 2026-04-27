@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
-import { colors, sharedStyles } from "../onboarding.styles";
+import { colors } from "@/constants/colors";
+import { sharedStyles } from "../onboarding.styles";
 import OptionChip from "../OptionChip";
 import { OnboardingData } from "../types";
 

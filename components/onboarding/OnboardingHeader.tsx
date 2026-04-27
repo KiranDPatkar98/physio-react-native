@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { colors } from "./onboarding.styles";
+import { colors } from "@/constants/colors";
 
 export default function OnboardingHeader() {
   return (
     <View style={styles.header}>
       <View style={styles.logoCircle}>
-        <Ionicons name="body" size={36} color="#fff" />
+        <Ionicons name="body" size={36} color={colors.white} />
       </View>
       <Text style={styles.appName}>PhysioConnect</Text>
       <Text style={styles.tagline}>Your recovery journey starts here</Text>
