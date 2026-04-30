@@ -15,6 +15,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import OnboardingStatusService from "@/services/OnboardingStatusService";
 
 const OTPScreen = () => {
   const params = useLocalSearchParams();
@@ -104,7 +105,16 @@ const OTPScreen = () => {
 
       // Demo: Accept 123456 as valid OTP
       if (otpToVerify === "123456") {
-        router.replace("/home");
+        // Check if user has completed onboarding
+        const isOnboarded = await OnboardingStatusService.isOnboardingCompleted();
+        
+        if (isOnboarded) {
+          // User is onboarded, go directly to main app
+          router.replace("/(tabs)/home");
+        } else {
+          // User needs onboarding, redirect to onboarding flow
+          router.replace("/onboarding");
+        }
       } else {
         throw new Error("Invalid OTP");
       }

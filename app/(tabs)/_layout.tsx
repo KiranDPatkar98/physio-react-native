@@ -24,12 +24,12 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="ai"
+        name="home"
         options={{
-          title: "AI",
+          title: "Home",
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={focused ? "sparkles" : "sparkles-outline"}
+              name={focused ? "home" : "home-outline"}
               size={24}
               color={color}
             />
@@ -37,12 +37,12 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="home"
+        name="ai"
         options={{
-          title: "Home",
+          title: "AI",
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={focused ? "home" : "home-outline"}
+              name={focused ? "sparkles" : "sparkles-outline"}
               size={24}
               color={color}
             />
@@ -62,24 +62,10 @@ export default function TabLayout() {
           ),
         }}
       />
-
       <Tabs.Screen
         name="profile"
         options={{
           title: "Profile",
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? "person" : "person-outline"}
-              size={24}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="onboarding"
-        options={{
-          title: "Onboarding",
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "person" : "person-outline"}

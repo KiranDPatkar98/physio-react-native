@@ -1,0 +1,341 @@
+{
+  "onboardingFlow": {
+    "meta": {
+      "version": "1.0",
+      "botName": "AI Assistant",
+      "botAvatar": "AI",
+      "title": "Physio Connect Setup"
+    },
+    "questions": {
+      "welcome": {
+        "id": "welcome",
+        "type": "message",
+        "content": "Hi there! 👋 I'm your AI physio assistant. I'm here to help you on your recovery journey!",
+        "delay": 1000,
+        "nextQuestion": "name"
+      },
+      "name": {
+        "id": "name",
+        "type": "input",
+        "content": "Let's start with the basics - what should I call you?",
+        "inputType": "text",
+        "placeholder": "Enter your name",
+        "validation": {
+          "required": true,
+          "minLength": 2,
+          "maxLength": 50
+        },
+        "nextQuestion": "name_response"
+      },
+      "name_response": {
+        "id": "name_response",
+        "type": "message",
+        "content": "Nice to meet you, {name}! 😊 I'm excited to help you on your wellness journey.",
+        "delay": 1500,
+        "nextQuestion": "age"
+      },
+      "age": {
+        "id": "age",
+        "type": "input",
+        "content": "How old are you? This helps me tailor the right exercises and recommendations for you.",
+        "inputType": "number",
+        "placeholder": "Enter your age",
+        "validation": {
+          "required": true,
+          "min": 10,
+          "max": 100
+        },
+        "nextQuestion": "age_response"
+      },
+      "age_response": {
+        "id": "age_response",
+        "type": "message",
+        "content": "Perfect! Now let me learn about your daily routine and work environment...",
+        "delay": 1200,
+        "nextQuestion": "work_mode"
+      },
+      "work_mode": {
+        "id": "work_mode",
+        "type": "choice",
+        "content": "How do you primarily spend your work day?",
+        "options": [
+          {
+            "id": "desk",
+            "label": "Mostly at a desk/computer 💻",
+            "value": "desk",
+            "description": "Office work, remote work, studying"
+          },
+          {
+            "id": "standing",
+            "label": "Mostly standing/moving 🚶",
+            "value": "standing",
+            "description": "Retail, teaching, healthcare"
+          },
+          {
+            "id": "physical",
+            "label": "Physical/manual work 💪",
+            "value": "physical",
+            "description": "Construction, fitness, manual labor"
+          },
+          {
+            "id": "mixed",
+            "label": "Mix of sitting and moving ⚖️",
+            "value": "mixed",
+            "description": "Varied daily activities"
+          }
+        ],
+        "nextQuestion": "sitting_hours"
+      },
+      "sitting_hours": {
+        "id": "sitting_hours",
+        "type": "choice",
+        "content": "On average, how many hours do you sit per day? This includes work, commuting, and leisure time.",
+        "options": [
+          {
+            "id": "low",
+            "label": "Less than 4 hours ⏱️",
+            "value": "<4"
+          },
+          {
+            "id": "medium",
+            "label": "4-8 hours 🕐",
+            "value": "4-8"
+          },
+          {
+            "id": "high",
+            "label": "More than 8 hours ⏰",
+            "value": ">8"
+          }
+        ],
+        "nextQuestion": "activity_level"
+      },
+      "activity_level": {
+        "id": "activity_level",
+        "type": "choice",
+        "content": "How would you describe your current activity level outside of work?",
+        "options": [
+          {
+            "id": "sedentary",
+            "label": "Mostly sedentary 📺",
+            "value": "sedentary"
+          },
+          {
+            "id": "light",
+            "label": "Light activity (walking, light exercise) 🚶‍♀️",
+            "value": "light"
+          },
+          {
+            "id": "moderate",
+            "label": "Moderate activity (regular exercise) 🏃‍♂️",
+            "value": "moderate"
+          },
+          {
+            "id": "active",
+            "label": "Very active (intense exercise, sports) 🏋️‍♀️",
+            "value": "active"
+          }
+        ],
+        "nextQuestion": "pain_check"
+      },
+      "pain_check": {
+        "id": "pain_check",
+        "type": "message",
+        "content": "Thanks! Now, let's talk about any discomfort or pain you might be experiencing. This helps me understand your current needs.",
+        "delay": 1800,
+        "nextQuestion": "pain_areas"
+      },
+      "pain_areas": {
+        "id": "pain_areas",
+        "type": "multi-choice",
+        "content": "Which areas do you currently experience pain or discomfort? Select all that apply:",
+        "minSelections": 0,
+        "maxSelections": 7,
+        "options": [
+          {
+            "id": "neck",
+            "label": "Neck 🦒",
+            "value": "neck"
+          },
+          {
+            "id": "shoulders",
+            "label": "Shoulders 💪",
+            "value": "shoulders"
+          },
+          {
+            "id": "upper_back",
+            "label": "Upper Back ⬆️",
+            "value": "upper_back"
+          },
+          {
+            "id": "lower_back",
+            "label": "Lower Back ⬇️",
+            "value": "lower_back"
+          },
+          {
+            "id": "wrists",
+            "label": "Wrists/Hands ✋",
+            "value": "wrists"
+          },
+          {
+            "id": "hips",
+            "label": "Hips 🦴",
+            "value": "hips"
+          },
+          {
+            "id": "knees",
+            "label": "Knees 🦵",
+            "value": "knees"
+          },
+          {
+            "id": "none",
+            "label": "No current pain ✅",
+            "value": "none",
+            "exclusive": true
+          }
+        ],
+        "nextQuestion": "pain_frequency"
+      },
+      "pain_frequency": {
+        "id": "pain_frequency",
+        "type": "choice",
+        "content": "How often do you experience this discomfort?",
+        "conditionalDisplay": {
+          "field": "pain_areas",
+          "condition": "not_equals",
+          "value": ["none"]
+        },
+        "options": [
+          {
+            "id": "daily",
+            "label": "Daily 📅",
+            "value": "daily"
+          },
+          {
+            "id": "few_times_week",
+            "label": "Few times a week 📆",
+            "value": "few_times_week"
+          },
+          {
+            "id": "weekly",
+            "label": "Weekly 🗓️",
+            "value": "weekly"
+          },
+          {
+            "id": "occasionally",
+            "label": "Occasionally ⏲️",
+            "value": "occasionally"
+          }
+        ],
+        "nextQuestion": "pain_intensity"
+      },
+      "pain_intensity": {
+        "id": "pain_intensity",
+        "type": "choice",
+        "content": "On a scale of 1-10, how would you rate your typical pain level?",
+        "conditionalDisplay": {
+          "field": "pain_areas",
+          "condition": "not_equals",
+          "value": ["none"]
+        },
+        "options": [
+          {
+            "id": "mild",
+            "label": "1-3 (Mild discomfort) 🟢",
+            "value": "1-3"
+          },
+          {
+            "id": "moderate",
+            "label": "4-6 (Moderate pain) 🟡",
+            "value": "4-6"
+          },
+          {
+            "id": "severe",
+            "label": "7-10 (Severe pain) 🔴",
+            "value": "7-10"
+          }
+        ],
+        "nextQuestion": "goals"
+      },
+      "goals": {
+        "id": "goals",
+        "type": "multi-choice",
+        "content": "What are your main wellness goals? Select all that apply:",
+        "minSelections": 1,
+        "maxSelections": 5,
+        "options": [
+          {
+            "id": "pain_relief",
+            "label": "Reduce pain and discomfort 🎯",
+            "value": "pain_relief"
+          },
+          {
+            "id": "flexibility",
+            "label": "Improve flexibility 🤸‍♀️",
+            "value": "flexibility"
+          },
+          {
+            "id": "posture",
+            "label": "Better posture 🧘‍♂️",
+            "value": "posture"
+          },
+          {
+            "id": "strength",
+            "label": "Build strength 💪",
+            "value": "strength"
+          },
+          {
+            "id": "mobility",
+            "label": "Increase mobility 🏃‍♀️",
+            "value": "mobility"
+          },
+          {
+            "id": "prevention",
+            "label": "Prevent future injuries 🛡️",
+            "value": "prevention"
+          },
+          {
+            "id": "stress",
+            "label": "Reduce stress and tension 😌",
+            "value": "stress"
+          }
+        ],
+        "nextQuestion": "time_commitment"
+      },
+      "time_commitment": {
+        "id": "time_commitment",
+        "type": "choice",
+        "content": "How much time can you realistically commit to exercises per day?",
+        "options": [
+          {
+            "id": "short",
+            "label": "5-10 minutes ⏱️",
+            "value": "5-10"
+          },
+          {
+            "id": "medium",
+            "label": "15-20 minutes 🕐",
+            "value": "15-20"
+          },
+          {
+            "id": "long",
+            "label": "30+ minutes ⏰",
+            "value": "30+"
+          },
+          {
+            "id": "flexible",
+            "label": "Varies by day 📅",
+            "value": "flexible"
+          }
+        ],
+        "nextQuestion": "completion"
+      },
+      "completion": {
+        "id": "completion",
+        "type": "message",
+        "content": "Fantastic! 🎉 I have everything I need to create your personalized physio plan. You're all set to start your wellness journey with Physio Connect!",
+        "delay": 2000,
+        "nextQuestion": null
+      }
+    }
+  }
+}
