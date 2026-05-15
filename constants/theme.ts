@@ -1,13 +1,26 @@
 const BASE_COLORS = {
   primary: "#003F7D",
+  primaryLight: "#0059B3",
+
   secondary: "#11C5BB",
   tertiary: "#22D3C5",
+
   background: "#F5F9FC",
+  backgroundSoft: "#DDF6F2",
+  backgroundGradient: "#C8F1EC",
+
   textDark: "#0B1F33",
+  textLight: "#5B6B7A",
+
   grayAccent: "#D9E4EC",
-  white: "#FFFFFF",
   gray: "#E5E7EB",
+  border: "#E8EEF3",
+
+  white: "#FFFFFF",
   black: "#1F2937",
+
+  success: "#0FA958",
+  error: "#DC2626",
 };
 
 export const COLORS = {
@@ -19,16 +32,12 @@ export const COLORS = {
   ): string => {
     const hexColor = BASE_COLORS[colorKey];
 
-    // Ensure the opacity bound stays safely between 0 and 100
     const boundedOpacity = Math.min(Math.max(opacity, 0), 100);
 
-    // Convert 0-100 percentage to a 0-255 integer
     const alphaValue = Math.round((boundedOpacity / 100) * 255);
 
-    // Convert the integer to a 2-digit hex string and pad with zero if needed
     const alphaHex = alphaValue.toString(16).toUpperCase().padStart(2, "0");
 
-    // Combine original hex color with the calculated alpha suffix
     return `${hexColor}${alphaHex}`;
   },
 };

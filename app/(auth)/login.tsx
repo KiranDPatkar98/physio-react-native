@@ -1,6 +1,7 @@
 import CustomButton from "@/components/customButton.tsx/customButton";
 import { COLORS } from "@/constants/theme";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
@@ -92,12 +93,52 @@ const LoginScreen = () => {
             </View>
             {error ? <Text style={styles.error}>{error}</Text> : null}
 
-            <CustomButton
-              title={"Send OTP"}
-              onPress={handleSendOTP}
-              style={styles.button}
-              disabled={phoneNumber.length !== 10 || isLoading}
+            <LinearGradient
+              colors={[COLORS.primary, COLORS.primaryLight]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={[
+                styles.button,
+                phoneNumber.length !== 10 && {
+                  opacity: 0.5,
+                },
+              ]}
+            >
+              <CustomButton
+                title={isLoading ? "Sending..." : "Send OTP"}
+                onPress={handleSendOTP}
+                disabled={phoneNumber.length !== 10 || isLoading}
+                textStyle={styles.buttonText}
+                endContent={
+                  <Ionicons name="send" size={20} color={COLORS.white} />
+                }
+                style={{
+                  backgroundColor: "transparent",
+                  shadowOpacity: 0,
+                  elevation: 0,
+                  width: "100%",
+                }}
+              />
+            </LinearGradient>
+          </View>
+
+          <View
+            style={{
+              alignItems: "center",
+              flexDirection: "row",
+              justifyContent: "center",
+              marginTop: 26,
+            }}
+          >
+            <View style={styles.line} />
+
+            <Ionicons
+              name="shield-checkmark-outline"
+              size={18}
+              color={COLORS.secondary}
             />
+
+            <View style={styles.line} />
           </View>
 
           <View style={styles.footer}>
@@ -118,119 +159,123 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: "transparent",
   },
 
   content: {
     flex: 1,
-    paddingHorizontal: 24,
     justifyContent: "space-between",
   },
 
   form: {
-    marginTop: 12,
+    marginTop: 10,
   },
 
   label: {
-    fontSize: 14,
-    fontWeight: "600",
-    marginBottom: 8,
+    fontSize: 18,
+    fontWeight: "700",
+    marginBottom: 14,
+    color: COLORS.textDark,
   },
 
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: COLORS.white,
-    borderWidth: 1.5,
-    borderColor: COLORS.gray,
-    borderRadius: 12,
-    paddingHorizontal: 14,
-    paddingVertical: 14,
+    borderWidth: 1,
+    borderColor: "#E8EEF3",
+    borderRadius: 16,
+    paddingHorizontal: 12,
+    height: 58,
+    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
   },
 
   countryCode: {
     flexDirection: "row",
     alignItems: "center",
-    paddingRight: 6,
   },
 
   flagEmoji: {
-    fontSize: 18,
-    marginRight: 4,
+    fontSize: 20,
+    marginRight: 6,
   },
 
   countryText: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: COLORS.black,
+    fontSize: 16,
+    fontWeight: "700",
+    color: COLORS.textDark,
   },
 
   dropdownIcon: {
-    marginLeft: 2,
+    marginLeft: 4,
   },
 
   separator: {
     width: 1,
-    height: 24,
-    backgroundColor: COLORS.gray,
-    marginHorizontal: 10,
+    height: 28,
+    backgroundColor: "#E5E7EB",
+    marginHorizontal: 12,
   },
 
   input: {
     flex: 1,
-    fontSize: 15,
+    fontSize: 16,
     color: COLORS.black,
-    padding: 0,
   },
 
   button: {
-    backgroundColor: COLORS.primary,
-    marginTop: 20,
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-    borderRadius: 14,
-    alignItems: "center",
-    justifyContent: "center",
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-    elevation: 6,
-  },
+    marginTop: 28,
+    borderRadius: 20,
+    overflow: "hidden",
 
-  buttonDisabled: {
-    opacity: 0.5,
+    shadowColor: "#007BFF",
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 16,
+    elevation: 8,
   },
 
   buttonText: {
-    fontSize: 16,
-    fontWeight: "600",
+    fontSize: 20,
+    fontWeight: "700",
+    color: COLORS.white,
   },
 
   error: {
-    marginTop: 8,
-    marginBottom: 8,
-    fontSize: 13,
+    marginTop: 12,
+    fontSize: 14,
     color: "#DC2626",
-    backgroundColor: "#FEE2E2",
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    borderRadius: 8,
-    borderLeftWidth: 3,
-    borderLeftColor: "#DC2626",
-    fontWeight: "500",
+    backgroundColor: "#FEF2F2",
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    borderRadius: 12,
   },
 
   footer: {
-    marginBottom: 20,
+    marginBottom: 28,
     alignItems: "center",
   },
 
   footerText: {
-    fontSize: 12,
+    fontSize: 14,
     textAlign: "center",
+    color: COLORS.textDark,
+    lineHeight: 24,
+    opacity: 0.8,
+  },
+  line: {
+    width: 120,
+    height: 1.5,
+    backgroundColor: COLORS.secondary,
+    opacity: 0.5,
+    marginHorizontal: 12,
   },
 
   link: {
-    fontWeight: "500",
+    color: COLORS.secondary,
+    fontWeight: "700",
   },
 });
