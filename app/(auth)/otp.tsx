@@ -1,4 +1,5 @@
 import { colors } from "@/constants/colors";
+import OnboardingStatusService from "@/services/OnboardingStatusService";
 import { LinearGradient } from "expo-linear-gradient";
 import { router, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -15,7 +16,6 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import OnboardingStatusService from "@/services/OnboardingStatusService";
 
 const OTPScreen = () => {
   const params = useLocalSearchParams();
@@ -106,8 +106,9 @@ const OTPScreen = () => {
       // Demo: Accept 123456 as valid OTP
       if (otpToVerify === "123456") {
         // Check if user has completed onboarding
-        const isOnboarded = await OnboardingStatusService.isOnboardingCompleted();
-        
+        const isOnboarded =
+          await OnboardingStatusService.isOnboardingCompleted();
+
         if (isOnboarded) {
           // User is onboarded, go directly to main app
           router.replace("/(tabs)/home");
@@ -164,7 +165,7 @@ const OTPScreen = () => {
     : "+91 ******";
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["left", "right", "bottom"]}>
       <StatusBar style="dark" />
 
       <KeyboardAvoidingView
@@ -173,20 +174,13 @@ const OTPScreen = () => {
         keyboardVerticalOffset={0}
       >
         <View style={styles.content}>
-          {/* Header */}
-          <View style={styles.header}>
-            <View style={styles.logo}>
-              <Text style={styles.logoText}>PC</Text>
-            </View>
-            <Text style={styles.title}>Verify OTP</Text>
-            <Text style={styles.subtitle}>
-              Enter the 6-digit code sent to {maskedPhone}
-            </Text>
-          </View>
-
           {/* Form */}
           <View style={styles.form}>
             {errors ? <Text style={styles.error}>{errors}</Text> : null}
+
+            <Text style={styles.subtitle}>
+              Enter the 6-digit code sent to {maskedPhone}
+            </Text>
 
             <Text style={styles.label}>Enter OTP</Text>
 
@@ -300,42 +294,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 
-  header: {
-    alignItems: "center",
-    marginTop: 40,
-  },
-
-  logo: {
-    width: 70,
-    height: 70,
-    borderRadius: 18,
-    backgroundColor: colors.primary,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 16,
-  },
-
-  logoText: {
-    color: colors.white,
-    fontSize: 22,
-    fontWeight: "700",
-  },
-
-  title: {
-    fontSize: 26,
-    fontWeight: "700",
-    color: colors.textPrimary,
-  },
-
   subtitle: {
     fontSize: 14,
     color: colors.textSecondary,
-    marginTop: 6,
+    marginBottom: 10,
     textAlign: "center",
   },
 
   form: {
-    marginTop: 40,
+    marginTop: 12,
   },
 
   label: {

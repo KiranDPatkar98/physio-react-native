@@ -1,16 +1,15 @@
-import { colors } from "@/constants/colors";
-import { LinearGradient } from "expo-linear-gradient";
+import CustomButton from "@/components/customButton.tsx/customButton";
+import { COLORS } from "@/constants/theme";
+import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
-  ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -58,7 +57,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["left", "right", "bottom"]}>
       <StatusBar style="dark" />
 
       <KeyboardAvoidingView
@@ -67,64 +66,40 @@ const LoginScreen = () => {
         keyboardVerticalOffset={0}
       >
         <View style={styles.content}>
-          {/* Header */}
-          <View style={styles.header}>
-            <View style={styles.logo}>
-              <Text style={styles.logoText}>PC</Text>
-            </View>
-            <Text style={styles.title}>Physio Connect</Text>
-            <Text style={styles.subtitle}>Your recovery, connected</Text>
-          </View>
-
-          {/* Form */}
           <View style={styles.form}>
-            {error ? <Text style={styles.error}>{error}</Text> : null}
-
             <Text style={styles.label}>Mobile Number</Text>
 
-            <View style={styles.inputRow}>
-              <View style={styles.country}>
+            <View style={styles.inputContainer}>
+              <View style={styles.countryCode}>
+                <Text style={styles.flagEmoji}>🇮🇳</Text>
                 <Text style={styles.countryText}>+91</Text>
+                <Ionicons
+                  name="chevron-down"
+                  size={14}
+                  color={COLORS.textDark}
+                  style={styles.dropdownIcon}
+                />
               </View>
-
+              <View style={styles.separator} />
               <TextInput
                 style={styles.input}
                 placeholder="Enter mobile number"
-                placeholderTextColor={colors.textMuted}
                 keyboardType="numeric"
                 maxLength={10}
                 value={phoneNumber}
                 onChangeText={handlePhoneChange}
               />
             </View>
+            {error ? <Text style={styles.error}>{error}</Text> : null}
 
-            {/* CTA */}
-            <TouchableOpacity
+            <CustomButton
+              title={"Send OTP"}
               onPress={handleSendOTP}
-              disabled={!phoneNumber || phoneNumber.length !== 10 || isLoading}
-              activeOpacity={0.85}
-              style={{ marginTop: 24 }}
-            >
-              <LinearGradient
-                colors={[colors.primary, colors.primaryDark]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={[
-                  styles.button,
-                  (!phoneNumber || phoneNumber.length !== 10) &&
-                    styles.buttonDisabled,
-                ]}
-              >
-                {isLoading ? (
-                  <ActivityIndicator color={colors.white} />
-                ) : (
-                  <Text style={styles.buttonText}>Send OTP</Text>
-                )}
-              </LinearGradient>
-            </TouchableOpacity>
+              style={styles.button}
+              disabled={phoneNumber.length !== 10 || isLoading}
+            />
           </View>
 
-          {/* Footer */}
           <View style={styles.footer}>
             <Text style={styles.footerText}>
               By continuing, you agree to our{" "}
@@ -143,7 +118,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: COLORS.white,
   },
 
   content: {
@@ -152,85 +127,70 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 
-  header: {
-    alignItems: "center",
-    marginTop: 40,
-  },
-
-  logo: {
-    width: 70,
-    height: 70,
-    borderRadius: 18,
-    backgroundColor: colors.primary,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 16,
-  },
-
-  logoText: {
-    color: colors.white,
-    fontSize: 22,
-    fontWeight: "700",
-  },
-
-  title: {
-    fontSize: 26,
-    fontWeight: "700",
-    color: colors.textPrimary,
-  },
-
-  subtitle: {
-    fontSize: 14,
-    color: colors.textSecondary,
-    marginTop: 6,
-  },
-
   form: {
-    marginTop: 40,
+    marginTop: 12,
   },
 
   label: {
     fontSize: 14,
     fontWeight: "600",
-    color: colors.labelText,
     marginBottom: 8,
   },
 
-  inputRow: {
+  inputContainer: {
     flexDirection: "row",
     alignItems: "center",
-  },
-
-  country: {
-    backgroundColor: colors.input,
+    backgroundColor: COLORS.white,
+    borderWidth: 1.5,
+    borderColor: COLORS.gray,
+    borderRadius: 12,
     paddingHorizontal: 14,
     paddingVertical: 14,
-    borderRadius: 12,
-    marginRight: 10,
+  },
+
+  countryCode: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingRight: 6,
+  },
+
+  flagEmoji: {
+    fontSize: 18,
+    marginRight: 4,
   },
 
   countryText: {
     fontSize: 14,
     fontWeight: "600",
-    color: colors.labelText,
+    color: COLORS.black,
+  },
+
+  dropdownIcon: {
+    marginLeft: 2,
+  },
+
+  separator: {
+    width: 1,
+    height: 24,
+    backgroundColor: COLORS.gray,
+    marginHorizontal: 10,
   },
 
   input: {
     flex: 1,
-    backgroundColor: colors.input,
-    paddingVertical: 14,
-    paddingHorizontal: 14,
-    borderRadius: 12,
     fontSize: 15,
-    color: colors.textPrimary,
+    color: COLORS.black,
+    padding: 0,
   },
 
   button: {
+    backgroundColor: COLORS.primary,
+    marginTop: 20,
+    paddingHorizontal: 16,
     paddingVertical: 16,
     borderRadius: 14,
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: colors.primaryDark,
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.25,
     shadowRadius: 10,
@@ -242,15 +202,22 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: colors.white,
     fontSize: 16,
     fontWeight: "600",
   },
 
   error: {
-    color: colors.error,
-    marginBottom: 10,
+    marginTop: 8,
+    marginBottom: 8,
     fontSize: 13,
+    color: "#DC2626",
+    backgroundColor: "#FEE2E2",
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    borderRadius: 8,
+    borderLeftWidth: 3,
+    borderLeftColor: "#DC2626",
+    fontWeight: "500",
   },
 
   footer: {
@@ -260,12 +227,10 @@ const styles = StyleSheet.create({
 
   footerText: {
     fontSize: 12,
-    color: colors.textMuted,
     textAlign: "center",
   },
 
   link: {
-    color: colors.primary,
     fontWeight: "500",
   },
 });
