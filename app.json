@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "physio-connect",
-    "slug": "physio-connect",
+    "name": "Kynsera",
+    "slug": "kynsera",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "physioconnect",
+    "scheme": "kynsera",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.physioconnect"
+      "bundleIdentifier": "com.anonymous.kynsera"
     },
     "android": {
       "adaptiveIcon": {
@@ -22,7 +22,7 @@
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "softwareKeyboardLayoutMode": "pan",
-      "package": "com.anonymous.physioconnect"
+      "package": "com.anonymous.kynsera"
     },
     "web": {
       "output": "static",

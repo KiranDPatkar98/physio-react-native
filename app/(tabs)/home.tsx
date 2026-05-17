@@ -48,7 +48,7 @@ const Home = () => {
           size={80}
           color={colors.textMuted}
         />
-        <Text style={styles.title}>Welcome to Physio Connect!</Text>
+        <Text style={styles.title}>Welcome to Kynsera!</Text>
         <Text style={styles.subtitle}>
           Complete your setup to get personalized recommendations
         </Text>
